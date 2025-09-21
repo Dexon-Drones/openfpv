@@ -1,4 +1,4 @@
-# openfpv-compat
+# openfpv
 
 **An open, transparent compatibility engine for DIY FPV drone parts.**
 
