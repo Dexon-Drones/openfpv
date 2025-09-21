@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "openfpv-compat"
+version = "0.1.0"
+description = "Open compatibility engine & CLI for DIY FPV drone parts."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "OpenFPV Contributors" }]
+keywords = ["fpv", "drone", "uav", "compatibility", "rc"]
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+]
+optional-dependencies = { xlsx = ["openpyxl>=3.1"] }
+
+[project.scripts]
+openfpv-compat = "cli.compat:main"
+
+[project.urls]
+Homepage = "https://github.com/your-org/openfpv-compat"
+Repository = "https://github.com/your-org/openfpv-compat"
+Issues = "https://github.com/your-org/openfpv-compat/issues"
+Documentation = "https://github.com/your-org/openfpv-compat#readme"
+
+[tool.hatch.build.targets.wheel]
+packages = ["openfpv_compat", "cli"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "openfpv_compat/**",
+  "cli/**",
+  "examples/**",
+  "docs/**",
+  "README.md",
+  "LICENSE",
+  "CHANGELOG.md",
+]

@@ -31,8 +31,7 @@ import pandas as pd
 from openfpv_compat import __version__ as PKG_VERSION
 from openfpv_compat.engine import load_parts, build_compat
 from openfpv_compat.summarize import summarize as summarize_edges
-
-PASS_VALUES = {"PASS", "OK", "TRUE", "YES", "1"}
+from openfpv_compat.schema import PASS_VALUES
 
 
 # ------------------------------ helpers ------------------------------
@@ -147,8 +146,9 @@ def run_cli(args: argparse.Namespace) -> int:
         summary = summarize_edges(compat)
         if summary is not None and not summary.empty:
             # minimal, aligned stdout table
+            pair_width = int(summary["pair"].astype(str).map(len).max())
             widths = {
-                "pair": max(16, summary["pair"].astype(str).map(len).max(initial=4)),
+                "pair": max(16, pair_width),
                 "pass": 5, "fail": 5, "unknown": 7,
             }
             header = f"{'PAIR'.ljust(widths['pair'])}  PASS  FAIL  UNK"
